@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的画板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="./main.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <script>
+        var div = document.getElementById("canvas");
+        console.log(div);
+        var down = false
+        div.onmousedown = function(a) {
+            var x = a.clientX;
+            var y = a.clientY;
+            var dviA = document.createElement('dvi');
+            //sdviA.id = 'point';
+            dviA.style = "left:" + (x - 3) + "px;" + "top:" + (y - 3) + "px;" + "width: 6px; height: 6px; background: black; border-radius: 3px; position: absolute;"
+            div.appendChild(dviA);
+            down = true;
+        }
+        div.onmousemove = function(b) {
+            if (down) {
+                var x = b.clientX;
+                var y = b.clientY;
+                var dviA = document.createElement('dvi');
+                //sdviA.id = 'point';
+                dviA.style = "left:" + (x - 3) + "px;" + "top:" + (y - 3) + "px;" + "width: 6px; height: 6px; background: black; border-radius: 3px; position: absolute;"
+                div.appendChild(dviA);
+            }
+        }
+        div.onmouseup = function(c) {
+            down = false;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    position: relative;
+}
+
+#canvas {
+    background: red;
+    height: 100vh;
+    position: relative;
+}
+
+#canvas2 {
+    background: green;
+    display: block;
+}
+
+#point {
+    width: 6px;
+    height: 6px;
+    background: black;
+    border-radius: 3px;
+    position: absolute;
+}
+
+button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
