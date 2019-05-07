@@ -1,4 +1,3 @@
-var btn_Eraser = document.getElementById("eraser");
 var userState = 'drow';
 
 //设置画板大小
@@ -7,16 +6,25 @@ autoSetCanvasSize(canvas);
 var context = canvas.getContext('2d');
 
 //橡皮擦点击事件
+var btn_Eraser = document.getElementById("eraser");
 btn_Eraser.onclick = function(btn) {
-    if (userState == 'eraser') {
-        setuserstate('drow');
-        btn_Eraser.textContent = '橡皮擦';
-    } else {
-        setuserstate('eraser');
-        btn_Eraser.textContent = '画笔';
-    }
-
+    setuserstate('eraser');
+    pen.classList.remove('active');
+    eraser.classList.add('active');
+    mousedown = false;
+    touchdown = false;
 }
+
+//笔的点击事件
+var btn_pen = document.getElementById("pen");
+btn_pen.onclick = function(btn) {
+    setuserstate('drow');
+    eraser.classList.remove('active');
+    pen.classList.add('active');
+    mousedown = false;
+    touchdown = false;
+}
+
 
 //非触碰设备
 canvas.onmousedown = msdown;

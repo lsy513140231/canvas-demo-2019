@@ -1,6 +1,31 @@
+ul,
+ol {
+    list-style: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 body {
     margin: 0;
     position: relative;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    outline: none;
 }
 
 #canvas {
@@ -10,7 +35,7 @@ body {
 }
 
 #canvas2 {
-    background: green;
+    background: white;
     display: block;
 }
 
@@ -22,8 +47,47 @@ body {
     position: absolute;
 }
 
-button {
-    position: absolute;
+.actions {
+    position: fixed;
     bottom: 0;
-    right: 0;
+    top: 0;
+}
+
+.actions svg {
+    width: 2em;
+    height: 2em;
+    margin: 6px 6px;
+    transition: all 0.3s;
+}
+
+.actions svg.active {
+    fill: red;
+    transform: scale(1.3);
+    transition: all 0.3s;
+}
+
+.colors {
+    position: fixed;
+    top: 40px;
+    left: 8px;
+}
+
+.colors>li {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 10px 0;
+}
+
+.colors>li.red {
+    background: red;
+}
+
+.colors>li.green {
+    background: green;
+}
+
+.colors>li.blue {
+    background: blue;
 }
