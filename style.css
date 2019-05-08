@@ -19,6 +19,7 @@ ol {
 body {
     margin: 0;
     position: relative;
+    overflow: hidden;
 }
 
 button {
@@ -82,12 +83,20 @@ button {
 
 .colors>li.red {
     background: red;
+    transition: all 0.3s;
 }
 
 .colors>li.green {
     background: green;
+    transition: all 0.3s;
 }
 
 .colors>li.blue {
     background: blue;
+    transition: all 0.3s;
+}
+
+.colors>.select {
+    transform: scale(1.3);
+    transition: all 0.3s;
 }

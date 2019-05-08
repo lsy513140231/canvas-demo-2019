@@ -1,9 +1,50 @@
+document.body.ontouchstart = function(click) {
+    click.preventDefault();
+}
 var userState = 'drow';
-
-//设置画板大小
+var pencolor = 'black'
+    //设置画板大小
 var canvas = document.getElementById("canvas2");
 autoSetCanvasSize(canvas);
 var context = canvas.getContext('2d');
+
+//设置画笔颜色按钮
+red.onclick = function() {
+    pencolor = 'red';
+    red.classList.add("select");
+    green.classList.remove("select");
+    blue.classList.remove("select");
+    btn_pen.onclick();
+}
+green.onclick = function() {
+    pencolor = 'green';
+    red.classList.remove("select");
+    green.classList.add("select");
+    blue.classList.remove("select");
+    btn_pen.onclick();
+}
+blue.onclick = function() {
+    pencolor = 'blue';
+    red.classList.remove("select");
+    green.classList.remove("select");
+    blue.classList.add("select");
+    btn_pen.onclick();
+}
+
+//清除按钮
+clear.onclick = function() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+//下载按钮
+save.onclick = function() {
+    var url = canvas.toDataURL("image/png");
+    var a = document.createElement('a');
+    document.body.appendChild(a);
+    a.href = url;
+    a.download = "MyImage";
+    a.click();
+}
 
 //橡皮擦点击事件
 var btn_Eraser = document.getElementById("eraser");
@@ -43,7 +84,7 @@ if (document.body.ontouchstart !== undefined) {
 //画出线
 function drawLine(x1, y1, x2, y2) {
     context.beginPath();
-    context.strokeStyle = 'red';
+    context.strokeStyle = pencolor;
     context.lineWidth = 1;
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
@@ -53,7 +94,7 @@ function drawLine(x1, y1, x2, y2) {
 //画出原形
 function drawCircle(x, y, ridius) {
     context.beginPath();
-    context.fillStyle = 'red';
+    context.fillStyle = pencolor;
     context.arc(x, y, ridius, 0, Math.PI * 2);
     context.fill();
 }
