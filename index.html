@@ -27,14 +27,25 @@
             <use xlink:href="#icon-save"></use>
         </svg>
     </div>
-    <ol class="colors">
-        <li id="red" class="red select"></li>
-        <li id="green" class="green"></li>
-        <li id="blue" class="blue"></li>
+    <ol id="colors" class="colors">
+        <li id="addColor" class="add select"></li>
     </ol>
-
+    <div id="colorPanl_Bg">
+        <div id=colorPanl>
+            <div id="colorPanl_Color"></div>
+            <div id="colorPanl_Input">
+                红:<input type="range" id="colorPanl_Color_r" min="0" max="255" value="255" onchange=""><br> 绿:
+                <input type="range" id="colorPanl_Color_g" min="0" max="255" value="255" onchange=""><br> 蓝:
+                <input type="range" id="colorPanl_Color_b" min="0" max="255" value="255" onchange=""><br>
+                <button id="colorPanl_ok"> 确定</button>
+                <button id="colorPanl_cancel">取消</button>
+            </div>
+        </div>
+    </div>
+    </div>
     <script src="//at.alicdn.com/t/font_1177382_tv2kos2bd7.js"></script>
     <script src="./main.js"></script>
+
 </body>
 
 </html>

@@ -50,7 +50,7 @@ button {
 
 .actions {
     position: fixed;
-    bottom: 0;
+    left: 0;
     top: 0;
 }
 
@@ -81,22 +81,68 @@ button {
     margin: 10px 0;
 }
 
-.colors>li.red {
-    background: red;
-    transition: all 0.3s;
-}
-
-.colors>li.green {
-    background: green;
-    transition: all 0.3s;
-}
-
-.colors>li.blue {
-    background: blue;
-    transition: all 0.3s;
-}
-
 .colors>.select {
     transform: scale(1.3);
     transition: all 0.3s;
+}
+
+.add {
+    transition: color .25s;
+    position: relative;
+}
+
+.add::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    margin-left: 2px;
+    margin-top: 8px;
+    border-top: 4px solid;
+}
+
+.add::after {
+    content: '';
+    position: absolute;
+    height: 16px;
+    margin-left: 8px;
+    margin-top: 2px;
+    border-left: 4px solid;
+}
+
+#colorPanl_Bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 44, 44, 0.4);
+    display: none;
+}
+
+#colorPanl_Bg.actions {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: rgba(44, 44, 44, 0.4);
+    display: inline;
+}
+
+#colorPanl_Color {
+    width: 150px;
+    height: 150px;
+    border: solid black 1px;
+    background: white;
+    margin: 10px 10px;
+}
+
+#colorPanl_Input {
+    margin: 10px 10px;
+}
+
+#colorPanl {
+    position: absolute;
+    border: solid green 2px;
+    left: 40px;
+    top: 44px;
+    background: rgba(44, 44, 44, 0.4);
 }
