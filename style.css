@@ -198,3 +198,9 @@ button {
     top: 44px;
     background: rgba(44, 44, 44, 0.4);
 }
+
+
+.pen_Size{
+    position: absolute;
+    left: 60px;
+}

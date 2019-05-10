@@ -2,13 +2,8 @@
 var userState = 'drow';
 //用户笔的颜色
 var pencolor = 'black';
-
-//清理点击事件
-document.body.ontouchstart = function(click) {
-    click.preventDefault();
-}
-
-
+//用户笔的粗细
+var pensize = 1;
 //颜色集合
 var myColors = [
     { r: 0, g: 0, b: 0 },
@@ -84,7 +79,13 @@ if (document.body.ontouchstart !== undefined) {
     canvas.ontouchstart = todown;
     canvas.ontouchmove = tomove;
     canvas.ontouchend = toup;
+}else{
+    //清理点击事件
+    // document.body.ontouchstart = function(click) {
+    //     click.preventDefault();
+    // }
 }
+
 
 
 
@@ -93,7 +94,7 @@ if (document.body.ontouchstart !== undefined) {
 function drawLine(x1, y1, x2, y2) {
     context.beginPath();
     context.strokeStyle = pencolor;
-    context.lineWidth = 1;
+    context.lineWidth = pensize;
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
     context.stroke();
@@ -142,7 +143,7 @@ function msdown(a) {
         case 'drow':
             lastPos.x = x;
             lastPos.y = y;
-            drawCircle(x, y, 1);
+            drawCircle(x, y, pensize/2);
             break;
         case 'eraser':
             context.clearRect(x - 5, y - 5, 10, 10);
@@ -196,7 +197,7 @@ function todown(a) {
         case 'drow':
             lastPos2.x = x;
             lastPos2.y = y;
-            drawCircle(x, y, 1);
+            drawCircle(x, y, pensize/2);
             break;
         case 'eraser':
             context.clearRect(x - 5, y - 5, 10, 10);
@@ -350,4 +351,10 @@ btn_ok.onclick = function(eee) {
 
 function savemyColorDate(){
     localStorage.setItem('colors', JSON.stringify(myColors));
+}
+
+document.getElementById("pen_Size_input").onchange=function(vaul){
+    pensize = vaul.path[0].value;
+    console.log(document.getElementById("pen_Size_Text"));
+    document.getElementById("pen_Size_Text").innerText = "粗细:  "+pensize+"PX";
 }
