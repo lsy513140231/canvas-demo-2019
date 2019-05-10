@@ -17,10 +17,11 @@ var myColors = [
     { r: 0, g: 0, b: 0 },
     { r: 255, g: 0, b: 0 },
     { r: 0, g: 255, b: 0 },
-    { r: 0, g: 0, b: 255 },
+    { r: 0, g: 0, b: 255 }
 ]
 
 //添加颜色，并且添加点击事件
+loadData();
 InitColor();
 
 
@@ -228,15 +229,16 @@ function tomove(b) {
 //触屏结束
 function toup(c) { touchdown = false; }
 
-
-
-function InitColor() {
+function loadData(){
     if (localStorage.getItem('colors')) {
         var hashInlocalStorage = JSON.parse(localStorage.getItem('colors'));
         if (hashInlocalStorage) {
             myColors = hashInlocalStorage;
         }
     }
+}
+
+function InitColor() {
 
 
     var Element_colors = document.getElementById("colors");
@@ -298,7 +300,7 @@ btn_cancel.onclick = function(eee) {
 //
 var btn_ok = document.getElementById("colorPanl_ok");
 btn_ok.onclick = function(eee) {
-    myColors[myColors.length] = { r: colorPanl_Color_r.value, g: colorPanl_Color_g.value, b: colorPanl_Color_b.value };
+    myColors.push({ r: colorPanl_Color_r.value, g: colorPanl_Color_g.value, b: colorPanl_Color_b.value });
     InitColor();
     document.getElementById("colorPanl_Bg").classList.remove("actions");
     localStorage.setItem('colors', JSON.stringify(myColors));
