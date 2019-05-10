@@ -20,7 +20,19 @@ var myColors = [
     { r: 0, g: 0, b: 255 }
 ]
 
+
+//笔的点击事件
+var btn_pen = document.getElementById("pen");
+btn_pen.onclick = function(btn) {
+    setuserstate('drow');
+    eraser.classList.remove('active');
+    pen.classList.add('active');
+    mousedown = false;
+    touchdown = false;
+}
+
 //添加颜色，并且添加点击事件
+var selectcolorindex = 0;
 loadData();
 InitColor();
 
@@ -64,17 +76,6 @@ btn_Eraser.onclick = function(btn) {
     touchdown = false;
 }
 
-
-
-//笔的点击事件
-var btn_pen = document.getElementById("pen");
-btn_pen.onclick = function(btn) {
-    setuserstate('drow');
-    eraser.classList.remove('active');
-    pen.classList.add('active');
-    mousedown = false;
-    touchdown = false;
-}
 
 
 //非触碰设备
@@ -238,9 +239,13 @@ function loadData(){
     }
 }
 
+function selectpencolor(index){
+    pencolor = colorRGB2Hex(myColors[index]);
+    console.log(btn_pen)
+    btn_pen.onclick();
+}
+
 function InitColor() {
-
-
     var Element_colors = document.getElementById("colors");
 
     for (var index = 0; index < myColors.length; index++) {
@@ -249,23 +254,49 @@ function InitColor() {
             Element_colors.removeChild(child);
         }
         var li = document.createElement("li");
-        Element_colors.appendChild(li);
+        Element_colors.appendChild(li);     
         li.style = "background: rgb(" + myColors[index]["r"] + "," + myColors[index]["g"] + "," + myColors[index]["b"] + ");transition: all 0.3s;";
         li.id = "myColor" + index;
-        if (index === 0) {
+
+
+        
+        
+        var dvi_delete = document.createElement("dvi");
+        dvi_delete.id=index;
+        dvi_delete.className="colorDelete";
+        li.appendChild(dvi_delete);
+        dvi_delete.onclick=function(btn){
+            var child=btn.target.parentNode;
+            child.parentNode.removeChild(child);
+            //console.log(btn.target.parentNode.parentNode)
+            //btn.target.parentNode.parentNode.remove(btn.target.parentNode);
+            console.log(myColors.length);
+            myColors.splice(btn.target.id,1);
+            savemyColorDate()
+            console.log(myColors.length);
+        }
+
+
+        if (index === selectcolorindex) {
             li.classList.add("select");
+            li.childNodes[0].classList.add("select");
+            selectpencolor(selectcolorindex);
+
         }
     }
-
+    selectcolorindex = myColors.length;
+    console.log(selectcolorindex);
     for (var index = 1; index < Element_colors.children.length; index++) {
         Element_colors.children[index].onclick = function(eee) {
 
             for (var index1 = 1; index1 < Element_colors.children.length; index1++) {
                 if (eee.target === Element_colors.children[index1]) {
                     Element_colors.children[index1].classList.add("select");
-                    pencolor = colorRGB2Hex(myColors[index1 - 1]);
+                    Element_colors.children[index1].childNodes[0].classList.add("select");
+                    selectpencolor(index1 - 1);
                 } else {
                     Element_colors.children[index1].classList.remove("select");
+                    Element_colors.children[index1].childNodes[0].classList.remove("select");
                 }
             }
         }
@@ -303,5 +334,9 @@ btn_ok.onclick = function(eee) {
     myColors.push({ r: colorPanl_Color_r.value, g: colorPanl_Color_g.value, b: colorPanl_Color_b.value });
     InitColor();
     document.getElementById("colorPanl_Bg").classList.remove("actions");
+    savemyColorDate();
+}
+
+function savemyColorDate(){
     localStorage.setItem('colors', JSON.stringify(myColors));
 }

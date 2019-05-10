@@ -79,7 +79,59 @@ button {
     border-radius: 50%;
     border: 1px solid black;
     margin: 10px 0;
+    position: relative;
 }
+
+
+.colors .colorDelete.select{
+	width: 12px;
+	height: 12px;
+	margin: auto;
+    position: absolute; 
+    left: 12px;
+    bottom: 8px;
+    border: 1px solid red;
+    border-radius: 50%;
+    transform: scale(0.8);
+    transition: all 0.3s;
+}
+
+.colors .colorDelete{
+	width: 12px;
+	height: 12px;
+	margin: auto;
+    position: absolute; 
+    left: 12px;
+    bottom: 8px;
+    border: 1px solid red;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: all 0.3s;
+}
+.colors .colorDelete::before,
+.colors .colorDelete::after{
+  content: "";
+  position: absolute;  /*方便进行定位*/
+  height: 12px;
+  width: 2px;
+  right: 5px;  /*设置top和right使图像在20*20框中居中*/
+ background: red;
+}
+.colors .colorDelete::before{
+  transform: rotate(45deg);  /*进行旋转*/
+}
+.colors .colorDelete::after{
+  transform: rotate(-45deg);
+}
+
+
+
+
+
+
+
+
+
 
 .colors>.select {
     transform: scale(1.3);
