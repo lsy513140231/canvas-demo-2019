@@ -8,9 +8,6 @@ document.body.ontouchstart = function(click) {
     click.preventDefault();
 }
 
-document.getElementById("addColor").onclick = function(click) {
-    document.getElementById("colorPanl_Bg").classList.add(".actions");
-}
 
 //颜色集合
 var myColors = [
@@ -240,9 +237,8 @@ function loadData(){
 }
 
 function selectpencolor(index){
-    pencolor = colorRGB2Hex(myColors[index]);
-    console.log(btn_pen)
-    btn_pen.onclick();
+        pencolor = colorRGB2Hex(myColors[index]);
+        btn_pen.onclick();
 }
 
 function InitColor() {
@@ -268,14 +264,24 @@ function InitColor() {
         dvi_delete.onclick=function(btn){
             var child=btn.target.parentNode;
             child.parentNode.removeChild(child);
-            //console.log(btn.target.parentNode.parentNode)
-            //btn.target.parentNode.parentNode.remove(btn.target.parentNode);
-            console.log(myColors.length);
             myColors.splice(btn.target.id,1);
-            savemyColorDate()
-            console.log(myColors.length);
+            savemyColorDate(); 
+                if(Element_colors.children[1]){
+                Element_colors.children[1].className="select";
+                Element_colors.children[1].childNodes[0].classList.add("select");
+                selectcolorindex--;
+                selectpencolor(0);
+            }
+            stopBubbling(btn);
         }
-
+        function stopBubbling(e) {
+            e = window.event || e;
+            if (e.stopPropagation) {
+                e.stopPropagation();      //阻止事件 冒泡传播
+            } else {
+                e.cancelBubble = true;   //ie兼容
+            }
+        }
 
         if (index === selectcolorindex) {
             li.classList.add("select");
@@ -285,10 +291,10 @@ function InitColor() {
         }
     }
     selectcolorindex = myColors.length;
-    console.log(selectcolorindex);
+
     for (var index = 1; index < Element_colors.children.length; index++) {
         Element_colors.children[index].onclick = function(eee) {
-
+            console.log(eee.target);
             for (var index1 = 1; index1 < Element_colors.children.length; index1++) {
                 if (eee.target === Element_colors.children[index1]) {
                     Element_colors.children[index1].classList.add("select");
@@ -320,6 +326,11 @@ function changeColor() {
 var btn_addcolor = document.getElementById("addColor");
 btn_addcolor.onclick = function(eee) {
     document.getElementById("colorPanl_Bg").classList.add("actions");
+    var colorPanl = document.getElementById("colorPanl_Color");
+    colorPanl.style = "background:rgb(" + 0 + "," + 0 + "," + 0 + ")";
+    colorPanl_Color_r.value=0;
+    colorPanl_Color_g.value=0;
+    colorPanl_Color_b.value=0;
 }
 
 //
